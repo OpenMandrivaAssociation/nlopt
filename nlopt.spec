@@ -101,4 +101,4 @@ done
 
 %files
 %license COPYING
-%{python_sitearch}/*
+#{python_sitearch}/*
