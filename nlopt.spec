@@ -61,7 +61,6 @@ This package contains the Octave interface for NLopt.
 %autosetup -p1 -n %{pname}-%{version}
 
 %build
-%{python_expand # Necessary to run configure with all python flavors
 export PYTHON=$python
 mkdir ../${PYTHON}_build
 cp -pr ./ ../${PYTHON}_build
