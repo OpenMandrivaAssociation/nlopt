@@ -1,6 +1,17 @@
-Name:           nlopt%{?psuffix}
+%global flavor @BUILD_FLAVOR@%{nil}
+
+%if "%{flavor}" == ""
+%bcond_without bindings
+%endif
+%if "%{flavor}" == "main"
+%bcond_with   bindings
+%define psuffix -main
+%endif
+%define pname nlopt
+
+Name:           nlopt
 Version:        2.7.1
-Release:        0
+Release:        1
 Summary:        A library for nonlinear optimization
 License:        LGPL-2.0-only
 Group:          Development/Libraries/C and C++
@@ -8,7 +19,6 @@ URL:            https://nlopt.readthedocs.io/en/latest/
 Source0:        https://github.com/stevengj/nlopt/archive/v%{version}.tar.gz#/%{pname}-%{version}.tar.gz
 BuildRequires:  cmake
 BuildRequires:  fdupes
-BuildRequires:  gcc-c++
 BuildRequires:  hdf5-devel
 BuildRequires:  pkgconfig
 %if %{with bindings}
@@ -16,7 +26,6 @@ BuildRequires:  %{python_module numpy-devel}
 BuildRequires:  swig
 BuildRequires:  pkgconfig(octave)
 Requires:       python-numpy
-%python_subpackages
 %endif
 
 %description
@@ -78,7 +87,7 @@ pushd ../${PYTHON}_build
    -DNLOPT_SWIG:BOOL=ON \
    -DPYTHON_EXECUTABLE=%{_bindir}/$python \
    %{nil}
-%cmake_build
+%make_build
 popd
 }
 %else
@@ -92,7 +101,7 @@ popd
    -DNLOPT_OCTAVE:BOOL=OFF \
    -DNLOPT_SWIG:BOOL=OFF \
    %{nil}
-%cmake_build
+%make_build
 %endif
 
 %install
@@ -100,7 +109,7 @@ popd
 %{python_expand # Necessary to run configure with all python flavors
 export PYTHON=$python
 pushd ../${PYTHON}_build
-%cmake_install
+%make_install -C build
 # remove files from the main package
 for e in %{_includedir} %{_libdir}/lib\* %{_libdir}/pkgconfig %{_libdir}/cmake %{_mandir} ; do
     rm -R %{buildroot}/${e}
@@ -109,7 +118,7 @@ done
 popd
 }
 %else
-%cmake_install
+%make_install -C build
 %endif
 
 %check
