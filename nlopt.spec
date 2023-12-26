@@ -1,12 +1,5 @@
 %global flavor @BUILD_FLAVOR@%{nil}
 
-%if "%{flavor}" == ""
-%bcond_without bindings
-%endif
-%if "%{flavor}" == "main"
-%bcond_with   bindings
-%define psuffix -main
-%endif
 %define pname nlopt
 
 Name:           nlopt
@@ -21,12 +14,10 @@ BuildRequires:  cmake
 BuildRequires:  fdupes
 BuildRequires:  hdf5-devel
 BuildRequires:  pkgconfig
-%if %{with bindings}
 BuildRequires:  %{python_module numpy-devel}
 BuildRequires:  swig
 BuildRequires:  pkgconfig(octave)
 Requires:       python-numpy
-%endif
 
 %description
 NLopt is a free/open-source library for nonlinear optimization,
@@ -70,7 +61,6 @@ This package contains the Octave interface for NLopt.
 %autosetup -p1 -n %{pname}-%{version}
 
 %build
-%if %{with bindings}
 %{python_expand # Necessary to run configure with all python flavors
 export PYTHON=$python
 mkdir ../${PYTHON}_build
@@ -85,27 +75,10 @@ pushd ../${PYTHON}_build
    -DNLOPT_PYTHON:BOOL=ON \
    -DNLOPT_OCTAVE:BOOL=ON \
    -DNLOPT_SWIG:BOOL=ON \
-   -DPYTHON_EXECUTABLE=%{_bindir}/$python \
-   %{nil}
+   -DPYTHON_EXECUTABLE=%{_bindir}/$python
 %make_build
-popd
-}
-%else
-%cmake \
-   -DCMAKE_SKIP_RPATH:BOOL=OFF \
-   -DCMAKE_SKIP_INSTALL_RPATH:BOOL=ON \
-   -DNLOPT_MATLAB=OFF \
-   -DNLOPT_CXX:BOOL=ON \
-   -DNLOPT_TESTS:BOOL=ON \
-   -DNLOPT_PYTHON:BOOL=OFF \
-   -DNLOPT_OCTAVE:BOOL=OFF \
-   -DNLOPT_SWIG:BOOL=OFF \
-   %{nil}
-%make_build
-%endif
 
 %install
-%if %{with bindings}
 %{python_expand # Necessary to run configure with all python flavors
 export PYTHON=$python
 pushd ../${PYTHON}_build
@@ -115,13 +88,7 @@ for e in %{_includedir} %{_libdir}/lib\* %{_libdir}/pkgconfig %{_libdir}/cmake %
     rm -R %{buildroot}/${e}
 done
 %fdupes %{buildroot}%{$python_sitearch}
-popd
-}
-%else
-%make_install -C build
-%endif
 
-%if "%{flavor}" == "main"
 %files -n lib%{pname}0
 %{_libdir}/*.so.*
 
@@ -133,9 +100,7 @@ popd
 %{_libdir}/pkgconfig/%{pname}.pc
 %{_libdir}/cmake/%{pname}/
 %{_mandir}/man3/*.3%{?ext_man}
-%endif
 
-%if %{with bindings}
 %files %{python_files}
 %license COPYING
 %{python_sitearch}/*
@@ -147,4 +112,3 @@ popd
 %dir %{_libdir}/octave/*/site/oct/*
 %{_libdir}/octave/*/site/oct/*/*.oct
 %{_datadir}/octave/*/site/m/*
-%endif
