@@ -128,7 +128,7 @@ popd
 %{_includedir}/nlopt.h
 %{_includedir}/nlopt.hpp
 %{_libdir}/pkgconfig/nlopt.pc
-%{_mandri}/man3/*
+%{_mandir}/man3/*
 
 %if "%{flavor}" == "main"
 %files -n lib%{pname}0
