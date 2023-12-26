@@ -93,11 +93,11 @@ done
 %files -n %{pname}-devel
 %license COPYING
 %doc AUTHORS NEWS.md README.md TODO
-%{_includedir}/*
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/%{pname}.pc
-%{_libdir}/cmake/%{pname}/
-%{_mandir}/man3/*.3%{?ext_man}
+#{_includedir}/*
+#{_libdir}/*.so
+#{_libdir}/pkgconfig/%{pname}.pc
+#{_libdir}/cmake/%{pname}/
+#{_mandir}/man3/*.3%{?ext_man}
 
 %files
 %license COPYING
