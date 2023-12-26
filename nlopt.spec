@@ -16,7 +16,7 @@ BuildRequires:  hdf5-devel
 BuildRequires:  pkgconfig
 BuildRequires:  python-numpy
 BuildRequires:  swig
-BuildRequires:  pkgconfig(octave)
+#BuildRequires:  pkgconfig(octave)
 Requires:       python-numpy
 
 %description
@@ -44,18 +44,18 @@ Requires:       lib%{pname}0 = %{version}
 The %{pname}-devel package contains libraries and header files for
 developing applications that use NLopt.
 
-%package     -n octave-nlopt_optimize
-Summary:        Octave interface to nonlinear optimization libray
-Group:          Productivity/Scientific/Math
-Requires:   octave-cli
+#package     -n octave-nlopt_optimize
+#Summary:        Octave interface to nonlinear optimization libray
+#Group:          Productivity/Scientific/Math
+#Requires:   octave-cli
 
-%description -n octave-nlopt_optimize
-NLopt is a free/open-source library for nonlinear optimization,
-providing a common interface for a number of different free
-optimization routines available online as well as original
-implementations of various other algorithms.
+#description -n octave-nlopt_optimize
+#NLopt is a free/open-source library for nonlinear optimization,
+#providing a common interface for a number of different free
+#optimization routines available online as well as original
+#implementations of various other algorithms.
 
-This package contains the Octave interface for NLopt.
+#This package contains the Octave interface for NLopt.
 
 %prep
 %autosetup -p1 -n %{pname}-%{version}
@@ -72,7 +72,7 @@ pushd ../${PYTHON}_build
    -DNLOPT_CXX:BOOL=ON \
    -DNLOPT_TESTS:BOOL=ON \
    -DNLOPT_PYTHON:BOOL=ON \
-   -DNLOPT_OCTAVE:BOOL=ON \
+   -DNLOPT_OCTAVE:BOOL=OFF \
    -DNLOPT_SWIG:BOOL=ON \
    -DPYTHON_EXECUTABLE=%{_bindir}/$python
 %make_build
