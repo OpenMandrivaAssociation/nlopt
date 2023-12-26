@@ -102,11 +102,3 @@ done
 %files
 %license COPYING
 %{python_sitearch}/*
-
-%files -n octave-nlopt_optimize
-%license COPYING
-%dir %{_libdir}/octave/*/site
-%dir %{_libdir}/octave/*/site/oct
-%dir %{_libdir}/octave/*/site/oct/*
-%{_libdir}/octave/*/site/oct/*/*.oct
-%{_datadir}/octave/*/site/m/*
