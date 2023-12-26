@@ -121,9 +121,22 @@ popd
 %make_install -C build
 %endif
 
+%files
+%{_libdir}/*.so.*
+%{_libdir}/cmake/
+%{_includedir}/nlopt.f
+%{_includedir}/nlopt.h
+%{_includedir}/nlopt.hpp
+%{_libdir}/pkgconfig/nlopt.pc
+%{_mandri}/man3/*
+
 %if "%{flavor}" == "main"
 %files -n lib%{pname}0
 %{_libdir}/*.so.*
+%{_libdir}/cmake/
+%{_includedir}/nlopt.f
+%{_includedir}/nlopt.h
+%{_includedir}/nlopt.hpp
 
 %files -n %{pname}-devel
 %license COPYING
