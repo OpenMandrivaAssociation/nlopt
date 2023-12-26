@@ -88,7 +88,7 @@ done
 %fdupes %{buildroot}%{$python_sitearch}
 
 %files -n lib%{pname}0
-%{_libdir}/*.so.*
+#{_libdir}/*.so.*
 
 %files -n %{pname}-devel
 %license COPYING
