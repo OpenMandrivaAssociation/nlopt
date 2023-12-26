@@ -78,7 +78,6 @@ pushd ../${PYTHON}_build
 %make_build
 
 %install
-%{python_expand # Necessary to run configure with all python flavors
 export PYTHON=$python
 pushd ../${PYTHON}_build
 %make_install -C build
