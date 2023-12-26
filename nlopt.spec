@@ -56,7 +56,7 @@ developing applications that use NLopt.
 %package     -n octave-nlopt_optimize
 Summary:        Octave interface to nonlinear optimization libray
 Group:          Productivity/Scientific/Math
-%requires    octave-cli
+%Requires:   octave-cli
 
 %description -n octave-nlopt_optimize
 NLopt is a free/open-source library for nonlinear optimization,
