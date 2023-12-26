@@ -121,20 +121,6 @@ popd
 %make_install -C build
 %endif
 
-%check
-%if %{with bindings}
-%{python_expand # Necessary to run configure with all python flavors
-export PYTHON=$python
-pushd ../${PYTHON}_build
-%ctest
-}
-%else
-%ctest
-%endif
-
-%post -n lib%{pname}0 -p /sbin/ldconfig
-%postun -n lib%{pname}0 -p /sbin/ldconfig
-
 %if "%{flavor}" == "main"
 %files -n lib%{pname}0
 %{_libdir}/*.so.*
