@@ -14,7 +14,7 @@ BuildRequires:  cmake
 BuildRequires:  fdupes
 BuildRequires:  hdf5-devel
 BuildRequires:  pkgconfig
-BuildRequires:  %{python_module numpy-devel}
+BuildRequires:  python-numpy
 BuildRequires:  swig
 BuildRequires:  pkgconfig(octave)
 Requires:       python-numpy
