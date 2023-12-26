@@ -99,7 +99,7 @@ done
 %{_libdir}/cmake/%{pname}/
 %{_mandir}/man3/*.3%{?ext_man}
 
-%files %{python_files}
+%files
 %license COPYING
 %{python_sitearch}/*
 
