@@ -123,6 +123,7 @@ popd
 
 %files
 %{_libdir}/*.so.*
+%{_libdir}/libnlopt.so
 %{_libdir}/cmake/
 %{_includedir}/nlopt.f
 %{_includedir}/nlopt.h
