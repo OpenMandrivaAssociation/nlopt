@@ -5,7 +5,7 @@
 %define pname nlopt
 
 Name:           nlopt
-Version:        2.7.1
+Version:        2.11.0
 Release:        1
 Summary:        A library for nonlinear optimization
 License:        LGPL-2.0-only
