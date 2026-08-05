@@ -65,7 +65,6 @@ Header files for development with %{name}.
 %files -n %{devname}
 %{_libdir}/libnlopt.so
 %{_libdir}/cmake/
-%{_includedir}/nlopt.f
 %{_includedir}/nlopt.h
 %{_includedir}/nlopt.hpp
 %{_libdir}/pkgconfig/nlopt.pc
