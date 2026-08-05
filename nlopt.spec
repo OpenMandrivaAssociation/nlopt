@@ -60,7 +60,7 @@ Header files for development with %{name}.
 %make_install -C build
 
 %files -n %{libname}
-%{_libdir}/*.so.0*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{devname}
 %{_libdir}/libnlopt.so
