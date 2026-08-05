@@ -1,6 +1,6 @@
 %define libname %mklibname nlopt
 %define devname %mklibname nlopt -d
-%define major 0
+%define major 1
 
 %define pname nlopt
 
