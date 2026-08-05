@@ -12,6 +12,7 @@ License:        LGPL-2.0-only
 Group:          Development/Libraries/C and C++
 URL:            https://nlopt.readthedocs.io/en/latest/
 Source0:        https://github.com/stevengj/nlopt/archive/v%{version}.tar.gz#/%{pname}-%{version}.tar.gz
+BuildRequires:  make
 BuildRequires:  cmake
 BuildRequires:  fdupes
 BuildRequires:  hdf5-devel
